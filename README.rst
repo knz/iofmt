@@ -1,6 +1,9 @@
-===============================================================
- io::fmt - small, fast, printf-like formatting for C++ streams
-===============================================================
+=========
+ io::fmt
+=========
+
+small, fast, printf-like formatting for C++ streams
+---------------------------------------------------
 
 In a nutshell, **io::fmt**:
 
