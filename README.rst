@@ -87,7 +87,8 @@ Sequence   ``printf`` equivalent  Description                      C++ equivalen
        libc++ as of G++ 4.8 and Clang++ 3.3, although they are
        mandated by the ISO C++ standard. Although **io::fmt**
        recognizes the syntax the desired effect will not be obtained
-       unless the underlying C++ library also supports the feature.
+       unless the underlying C++ library also supports the
+       feature. Complain to your C++ library provider if needed.
 
 .. _C++11: https://en.wikipedia.org/wiki/C++11
 
