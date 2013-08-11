@@ -106,7 +106,8 @@ namespace io {
                     __s.setf(std::ios_base::skipws);
                 break;
             case 'd': __s.setf(std::ios_base::dec, std::ios_base::basefield); break;
-            case 'p': case 'x': case 'X': __s.setf(std::ios_base::hex, std::ios_base::basefield); break;
+            case 'p': __s.setf(std::ios_base::showbase); // fallthrough 'xX'
+            case 'x': case 'X': __s.setf(std::ios_base::hex, std::ios_base::basefield); break;
             case 'o': __s.setf(std::ios_base::oct, std::ios_base::basefield); break;
             case 'e': case 'E': __s.setf(std::ios_base::scientific, std::ios_base::floatfield); break;
             case 'f': case 'F': __s.setf(std::ios_base::fixed, std::ios_base::floatfield); break;

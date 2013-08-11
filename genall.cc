@@ -4,7 +4,7 @@
 #include <string>
 #include <stdint.h>
 
-const char ttab[] = "oxXdbBfFeEgGaA";
+const char ttab[] = "oxXpbdfFeEgGaA"; // order matters, see below in test()
 const char* xtab[] = { "", "#" };
 const char* atab[] = { "", "R", "L", "-", "I" };
 const char* wtab[] = { "", "0", "10" };
@@ -22,8 +22,8 @@ void test(size_t t, size_t x, size_t a, size_t w, size_t s, size_t n, size_t p)
     if (s > 0 && a < 2)
         // padding char is meaningless without padding
         return;
-    if (p > 0 && t < 3)
-        // force sign is meaningless for o/x
+    if (p > 0 && t < 5)
+        // force sign is meaningless for o/x/p/b
         return;
 
     std::string sfmt;

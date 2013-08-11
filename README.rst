@@ -74,6 +74,9 @@ Sequence   ``printf`` equivalent  Description                      C++ equivalen
 ``I``      (no equivalent)        Align left and right, pad middle ``std::internal``
 ``=`` *C*  0  (only *C* = '0')    Use *C* as padding character     ``std::setfill(C)``
 *N*        *N*                    Set format width to *N* chars    ``std::setw(N)``
+``&``      (no equivalent)        Flush after each I/O operation   ``std::unitbuf``
+``>``      (no equivalent)        Skip whitespace on input         ``std::skipws``
+``!``      (no equivalent)        Invert meaning of next ``&/>``   ``std::nounitbuf`` or ``std::noskipws``
 ========== ====================== ================================ =================
 
 .. [1] Hexadecimal floats (``aA``) and booleans as strings (``b``)
@@ -87,6 +90,33 @@ Sequence   ``printf`` equivalent  Description                      C++ equivalen
        unless the underlying C++ library also supports the feature.
 
 .. _C++11: https://en.wikipedia.org/wiki/C++11
+
+Each use of ``io::fmt`` first resets all formatting flags on the I/O
+stream. This means that any unspecified parameter other than ``&`` and
+``>`` revert to their C++ defaults: decimal, automatic width, fill
+using spaces, float precision 6, automatic float format, show sign
+only if negative, no prefix.
+
+In particular,
+
+ ::
+
+     s << io::fmt("");
+
+is equivalent to::
+
+     s << std::setw(0)
+       << std::dec
+       << std::setfill(' ')
+       << std::setprecision(6)
+       << std::noshowpos
+       << std::noshowbase;
+     s.setf(std::ios_base::fmtflags(), std::ios_base::floatfield);
+
+For ``&`` and ``>`` there is no default setting: each use of
+``io::fmt`` will keep the previous configuration. This is why a syntax
+is also provided to disable these flags when needed: ``!&``
+(``std::noflush``) and ``!>`` (``std::noskipws``).
 
 Performance
 ===========

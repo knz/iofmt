@@ -152,6 +152,7 @@ int main()
 
     // Integers, positive, hexadecimal, alternate (prefix)
     test("#x",     123, "0x7b");
+    test("p",      123, "0x7b");
     test("#6x",    123, "  0x7b");
     test("#6Rx",   123, "  0x7b");
     test("#6Ix",   123, "0x  7b");
